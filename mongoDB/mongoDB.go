@@ -35,7 +35,6 @@ type Mongo interface {
 		opts ...*options.DeleteOptions) (*mongo.DeleteResult, error)
 	DeleteMany(ctx context.Context, filter interface{}, opts ...*options.DeleteOptions) (*mongo.DeleteResult, error)
 	DropAll(ctx context.Context, opts ...*options.DropIndexesOptions) (bson.Raw, error)
-	IsDupError(err error) bool
 	CountDocuments(
 		ctx context.Context,
 		filter interface{},
