@@ -2,6 +2,7 @@ package mongoDB
 
 import (
 	"context"
+	"log"
 	"time"
 
 	"go.mongodb.org/mongo-driver/bson"
@@ -24,7 +25,7 @@ func (m *MongoImpl) Find(
 	}
 
 	elapsed := time.Since(startTime)
-	m.logger.Println(metricName, "res", res, "elapsedMs", elapsed.Milliseconds())
+	log.Println(metricName, "res", res, "elapsedMs", elapsed.Milliseconds())
 
 	return res, nil
 }
@@ -41,7 +42,7 @@ func (m *MongoImpl) FindOne(
 	res := m.mongoCollection.FindOne(ctx, filter, opts...)
 
 	elapsed := time.Since(startTime)
-	m.logger.Println(metricName, "res", res, "elapsedMs", elapsed.Milliseconds())
+	log.Println(metricName, "res", res, "elapsedMs", elapsed.Milliseconds())
 
 	return res
 }
@@ -57,7 +58,7 @@ func (m *MongoImpl) FindOneAndUpdate(ctx context.Context,
 	res := m.mongoCollection.FindOneAndUpdate(ctx, filter, update, opts...)
 
 	elapsed := time.Since(startTime)
-	m.logger.Println(metricName, "res", res, "elapsedMs", elapsed.Milliseconds())
+	log.Println(metricName, "res", res, "elapsedMs", elapsed.Milliseconds())
 
 	return res
 }
@@ -73,11 +74,11 @@ func (m *MongoImpl) InsertOne(
 
 	res, err := m.mongoCollection.InsertOne(ctx, document, opts...)
 	if err != nil {
-		m.logger.Println("collection.InsertOne", "err", err)
+		log.Println("collection.InsertOne", "err", err)
 	}
 
 	elapsed := time.Since(startTime)
-	m.logger.Println(metricName, "res", res, "elapsedMs", elapsed.Milliseconds())
+	log.Println(metricName, "res", res, "elapsedMs", elapsed.Milliseconds())
 
 	return res, err
 }
@@ -93,11 +94,11 @@ func (m *MongoImpl) ReplaceOne(
 
 	res, err := m.mongoCollection.ReplaceOne(ctx, filter, replacement, opts...)
 	if err != nil {
-		m.logger.Println("collection.ReplaceOne", "err", err)
+		log.Println("collection.ReplaceOne", "err", err)
 	}
 
 	elapsed := time.Since(startTime)
-	m.logger.Println(metricName, "res", res, "elapsedMs", elapsed.Milliseconds())
+	log.Println(metricName, "res", res, "elapsedMs", elapsed.Milliseconds())
 
 	return res, err
 }
@@ -112,11 +113,11 @@ func (m *MongoImpl) InsertMany(
 	startTime := time.Now()
 	res, err := m.mongoCollection.InsertMany(ctx, documents, opts...)
 	if err != nil {
-		m.logger.Println("collection.InsertMany", "err", err)
+		log.Println("collection.InsertMany", "err", err)
 	}
 
 	elapsed := time.Since(startTime)
-	m.logger.Println(metricName, "res", res, "elapsedMs", elapsed.Milliseconds())
+	log.Println(metricName, "res", res, "elapsedMs", elapsed.Milliseconds())
 
 	return res, err
 }
@@ -133,11 +134,11 @@ func (m *MongoImpl) UpdateOne(
 
 	res, err := m.mongoCollection.UpdateOne(ctx, filter, update, opts...)
 	if err != nil {
-		m.logger.Println("collection.UpdateOne", "err", err)
+		log.Println("collection.UpdateOne", "err", err)
 	}
 
 	elapsed := time.Since(startTime)
-	m.logger.Println(metricName, "res", res, "elapsedMs", elapsed.Milliseconds())
+	log.Println(metricName, "res", res, "elapsedMs", elapsed.Milliseconds())
 
 	return res, err
 }
@@ -153,12 +154,12 @@ func (m *MongoImpl) DeleteOne(
 
 	res, err := m.mongoCollection.DeleteOne(ctx, filter, opts...)
 	if err != nil {
-		m.logger.Println("collection.DeleteOne", "err", err)
+		log.Println("collection.DeleteOne", "err", err)
 		return nil, err
 	}
 
 	elapsed := time.Since(startTime)
-	m.logger.Println(metricName, "res", res, "elapsedMs", elapsed.Milliseconds())
+	log.Println(metricName, "res", res, "elapsedMs", elapsed.Milliseconds())
 
 	return res, err
 }
@@ -173,12 +174,12 @@ func (m *MongoImpl) DeleteMany(
 
 	res, err := m.mongoCollection.DeleteMany(ctx, filter, opts...)
 	if err != nil {
-		m.logger.Println("collection.DeleteMany", "err", err)
+		log.Println("collection.DeleteMany", "err", err)
 		return nil, err
 	}
 
 	elapsed := time.Since(startTime)
-	m.logger.Println(metricName, "res", res, "elapsedMs", elapsed.Milliseconds())
+	log.Println(metricName, "res", res, "elapsedMs", elapsed.Milliseconds())
 
 	return res, err
 }
@@ -188,12 +189,12 @@ func (m *MongoImpl) DropAll(ctx context.Context, opts ...*options.DropIndexesOpt
 	startTime := time.Now()
 	res, err := m.mongoCollection.Indexes().DropAll(ctx, opts...)
 	if err != nil {
-		m.logger.Println("collection.DropAll", "err", err)
+		log.Println("collection.DropAll", "err", err)
 		return nil, err
 	}
 
 	elapsed := time.Since(startTime)
-	m.logger.Println(metricName, "res", res, "elapsedMs", elapsed.Milliseconds())
+	log.Println(metricName, "res", res, "elapsedMs", elapsed.Milliseconds())
 
 	return res, err
 
@@ -211,11 +212,11 @@ func (m *MongoImpl) UpdateMany(
 
 	res, err := m.mongoCollection.UpdateMany(ctx, filter, update, opts...)
 	if err != nil {
-		m.logger.Println("collection.UpdateMany", "err", err)
+		log.Println("collection.UpdateMany", "err", err)
 	}
 
 	elapsed := time.Since(startTime)
-	m.logger.Println(metricName, "res", res, "elapsedMs", elapsed.Milliseconds())
+	log.Println(metricName, "res", res, "elapsedMs", elapsed.Milliseconds())
 
 	return res, err
 }
@@ -231,11 +232,11 @@ func (m *MongoImpl) CountDocuments(
 
 	count, err := m.mongoCollection.CountDocuments(ctx, filter, opts...)
 	if err != nil {
-		m.logger.Println("collection.CountDocuments", "err", err)
+		log.Println("collection.CountDocuments", "err", err)
 	}
 
 	elapsed := time.Since(startTime)
-	m.logger.Println(metricName, "count", count, "elapsedMs", elapsed.Milliseconds())
+	log.Println(metricName, "count", count, "elapsedMs", elapsed.Milliseconds())
 
 	return count, err
 }

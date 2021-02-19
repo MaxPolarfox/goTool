@@ -43,23 +43,22 @@ type Mongo interface {
 }
 
 type MongoImpl struct {
-	logger          log.Logger
 	mongoCollection *mongo.Collection
 }
 
-func NewMongo(opts Options, logger log.Logger) Mongo {
-	logger.Println("Instantiating MongoDB", "options", opts)
+func NewMongo(opts Options) Mongo {
+	log.Println("Instantiating MongoDB", "options", opts)
 
 	ctx, _ := context.WithTimeout(context.Background(), 25*time.Second)
 
 	client, err := mongo.Connect(ctx, options.Client().ApplyURI(opts.Connection))
 	if err != nil {
-		logger.Fatalf("NewMongo.error", "err", err)
+		log.Fatal("NewMongo.error", "err", err)
 	}
 
 	err = client.Ping(ctx, readpref.Primary())
 	if err != nil {
-		logger.Fatalf("Mongo Ping failed", "err", err)
+		log.Fatal("Mongo Ping failed", "err", err)
 	}
 	collection := client.Database(opts.Name).Collection(opts.Collection)
 
@@ -72,11 +71,10 @@ func NewMongo(opts Options, logger log.Logger) Mongo {
 	}
 	_, err = collection.Indexes().CreateOne(ctx, idIndex)
 	if err != nil {
-		logger.Println("CreatingIndex", "err", err)
+		log.Println("CreatingIndex", "err", err)
 	}
 
 	return &MongoImpl{
 		mongoCollection: collection,
-		logger:          logger,
 	}
 }
