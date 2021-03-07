@@ -1,14 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="954133bc-36f1-486b-bdfc-ea461cd67869" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/client/helpers.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/errors/helpers.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/errors/types.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/options.go" beforeDir="false" afterPath="$PROJECT_DIR$/client/options.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/url.go" beforeDir="false" afterPath="$PROJECT_DIR$/client/url.go" afterDir="false" />
-    </list>
+    <list default="true" id="954133bc-36f1-486b-bdfc-ea461cd67869" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />

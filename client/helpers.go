@@ -9,8 +9,8 @@ import (
 	"github.com/MaxPolarfox/goTools/errors"
 )
 
-// parseResponse ensures the response status codes, and ability to decode response body
-func parseResponse(res *http.Response, respStruct interface{}) error {
+// ParseResponse ensures the response status codes, and ability to decode response body
+func ParseResponse(res *http.Response, respStruct interface{}) error {
 	js, err := ioutil.ReadAll(res.Body)
 	if err != nil {
 		return &errors.Error{
