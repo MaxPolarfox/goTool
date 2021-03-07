@@ -1,4 +1,4 @@
-package ihttp
+package client
 
 import (
 	"net/url"

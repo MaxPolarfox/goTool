@@ -1,4 +1,4 @@
-package ihttp
+package client
 
 type Options struct {
 	URL        string             `json:"url"`
